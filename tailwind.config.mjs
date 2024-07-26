@@ -6,7 +6,7 @@ import starlightPlugin from '@astrojs/starlight-tailwind';
 // 900 - ?
 // 950 - ?
 
-const accent = { 200: '#f8b1cc', 600: '#c00074', 900: '#5f0037', 950: '#420a27' };
+const accent = { 200: '#f9b3b7', 600: '#c80042', 900: '#62031d', 950: '#430d17' }; 
 const gray = { 100: '#F1F1F1', 200: '#E2E2E2', 300: '#F2F2F2', 400: '#151515', 500: '#151515', 700: '#707070', 800: '#111111', 900: '#171717' };
 
 // 100 - light mode nav 

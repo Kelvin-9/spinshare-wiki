@@ -8,6 +8,10 @@ export default defineConfig({
 	integrations: [
 		starlight({
 
+			logo: {
+				src: './src/assets/custom-icons/Icon_colored.svg',
+			},
+
 			plugins: [starlightUtils({
 				multiSidebar: {
 					switcherStyle: 'dropdown'
@@ -66,7 +70,9 @@ export default defineConfig({
 
 			title: 'SpinShare Wiki',
 			social: {
-				github: 'https://github.com/withastro/starlight',
+				github: 'https://github.com/useredge/spinshare-wiki',
+				discord: 'https://spinsha.re/discord',
+				"x.com": 'https://x.com/@WeAreSpinShare',
 			},
 			sidebar: [
 				{
