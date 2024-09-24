@@ -8,6 +8,7 @@ import starlightImageZoomPlugin from 'starlight-image-zoom';
 export default defineConfig({
 	
 	site: 'https://useredge.github.io',
+	base: '/spinshare-wiki',
 
 	integrations: [
 		starlight({
