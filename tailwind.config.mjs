@@ -1,4 +1,3 @@
-import colors from 'tailwindcss/colors';
 import starlightPlugin from '@astrojs/starlight-tailwind';
 
 // 200 - primary dark mode
@@ -7,13 +6,13 @@ import starlightPlugin from '@astrojs/starlight-tailwind';
 // 950 - ?
 
 const accent = { 200: '#f9b3b7', 600: '#c80042', 900: '#62031d', 950: '#430d17' }; 
-const gray = { 100: '#F1F1F1', 200: '#E2E2E2', 300: '#F2F2F2', 400: '#151515', 500: '#151515', 700: '#707070', 800: '#111111', 900: '#171717' };
+const gray = { 100: '#F1F1F1', 200: '#E2E2E2', 300: '#F2F2F2', 400: '#A0A0A0', 500: '#151515', 700: '#707070', 800: '#111111', 900: '#171717' };
 
 // 100 - light mode nav 
 // 200 - lightmode borders/some bg
 // 300 - border
-// 400 - dark mode somth
-// 500 - ?????
+// 400 - dark mode text
+// 500 - light mode text
 // 700 - most borders
 // 900 - page background
 

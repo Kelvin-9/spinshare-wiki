@@ -6,3 +6,20 @@
 Add additional Tailwind styles to this file, for example with @layer:
 https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer
 */
+
+table {
+    @apply border border-collapse border-neutral-800 w-full table-cell bg-neutral-950;
+}
+  
+thead th {
+    @apply p-2 font-semibold text-sm border-none !important;
+}
+  
+tbody td {
+    @apply border border-neutral-900 p-2 !important;
+}
+
+/* tbody tr:nth-child(even) {
+    @apply bg-neutral-900;
+} */
+  

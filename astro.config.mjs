@@ -2,9 +2,13 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightUtils from '@lorenzo_lewis/starlight-utils'
 import tailwind from '@astrojs/tailwind';
+import starlightImageZoomPlugin from 'starlight-image-zoom';
 
 // https://astro.build/config
 export default defineConfig({
+	
+	site: 'https://useredge.github.io',
+
 	integrations: [
 		starlight({
 
@@ -15,8 +19,14 @@ export default defineConfig({
 			plugins: [starlightUtils({
 				multiSidebar: {
 					switcherStyle: 'dropdown'
+				},
+				navLinks: {
+					leading: { useSidebarLabelled: "leadingNavLinks" },
 				}
-			})],
+				
+			}),
+			starlightImageZoomPlugin(),
+		],
 
 			defaultLocale: 'root',
 
@@ -86,9 +96,33 @@ export default defineConfig({
 					label: 'Reference',
 					autogenerate: { directory: 'reference' },
 				},
+				{
+					label: 'Charting',
+					items: [
+						{ label: 'Getting started', slug: 'charting' },
+						{
+							label: 'Charting guide sub',
+							autogenerate: { directory: 'charting/charting-guide' }
+						},
+					],
+				},
+				{
+					label: "leadingNavLinks",
+					items: [
+						{ label: "Home", link: "/" },
+						{ label: "Charting", link: "/charting" },
+					]
+				},
 			],
+
 			customCss: ['./src/tailwind.css'],
+
+			favicon: '/favicon.svg',
+
+			lastUpdated: true,
+
 		}),
 		tailwind({ applyBaseStyles: false }),
+
 	],
 });

@@ -1,0 +1,55 @@
+---
+title: Charting
+description: Not enough death metal, too many anime openings, or just that one artist you're the biggest fan of whose songs haven't been charted yet? You've come to the right place to learn doing it yourself then!
+---
+
+import { Aside } from "@astrojs/starlight/components"
+import { Image } from "astro:assets"
+
+Not enough death metal, too many anime openings, or just that one artist you're the biggest fan of whose songs haven't been charted yet? 
+
+You've come to the right place to learn doing it yourself then!
+
+### Further reading
+
+- Read [about reference](https://diataxis.fr/reference/) in the `Diátaxis framework`
+
+
+```js
+Date.now();
+
+```
+
+<Aside>Some content in an aside.</Aside>
+
+<Aside type="caution">Some cautionary content.</Aside>
+
+<Aside type="tip">
+
+Other content is also supported in asides.
+
+```js
+// A code snippet, for example.
+Date.now();
+```
+
+</Aside>
+
+<Aside type="danger">Do not give your password to anyone.</Aside>
+
+| test 1 | test 2 |
+| :---: | :---: |
+| ![yea](../../../assets/audio-broken.DebhoaJL.png) | ![yea](../../../assets/audio-broken.DebhoaJL.png) |
+
+
+| Field name | Default | Notes |
+| --- | :---: | --- |
+| clipIndex | 0	| Denotes which audio to use. By default, all charts use only 1 audio, so just keep this at 0 |
+| startBar | varies |	Initial value depends on the placement of the first tempomarker and time signature |
+| endBar |	varies |	Initial value depends on startBar and the length of the audio |
+| transitionIn | 0 | 0 for hard start 1 to fade in before the clip begins (crossfade in) 2 to fade in after the clip begins |
+| transitionInValue | 0.0 | length of the fade effect in seconds |
+| transitionInOffset | 0.0 | offset of the start of the clip in seconds eg. if 1.0, the first second of the clip will be silence |
+| transitionOut	| 0	| 0 for hard end 1 to fade out after the clip ends (crossfade out) 2 to fade out before the clip ends |
+| transitionOutValue |	0.0	| length of the fade effect in seconds |
+| transitionOutOffset |	0.0 | offset of the end of the clip in seconds eg. if 1.0, the audio will continue for 1 second past the end of the clip |
