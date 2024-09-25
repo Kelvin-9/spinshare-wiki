@@ -102,7 +102,11 @@ export default defineConfig({
 					items: [
 						{ label: 'Getting started', slug: 'charting' },
 						{
-							label: 'Charting guide sub',
+							label: 'Audio',
+							autogenerate: { directory: 'charting/audio-setup' }
+						},
+						{
+							label: 'Charting',
 							autogenerate: { directory: 'charting/charting-guide' }
 						},
 					],

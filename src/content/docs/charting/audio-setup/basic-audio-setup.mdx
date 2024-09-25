@@ -1,0 +1,82 @@
+---
+title: Basic audio setup
+description: Let's get your audio file set up and ready to import in the editor!
+---
+
+import { Aside, FileTree } from "@astrojs/starlight/components"
+import { Image } from "astro:assets"
+import panelImage from "../../../../assets/images/audio/custom-side-panel.png"
+
+The natural first step to start working on a new chart is setting up the audio file of the song in question.
+Check the **Quick Start** steps for a quick summary.
+
+### Quick Start
+
+1. Install **[Audacity](https://www.audacityteam.org/download/)**
+    - If your source file is in a `.m4a` or `.aac` format, you may need to install the **[ffmpeg for windows](https://support.audacityteam.org/basics/installing-ffmpeg)** addon
+2. Find, or calculate, your songs' **BPM**. This will be necessary for **[Tempomapping](../tempomapping)**.
+3. **Export** your song as an `.ogg` (or obtain an `.mp3`) file.
+
+### A note on song selection for beginners
+
+The following are **purely recommendations** on picking a track to chart for those starting out on their charting journey.
+The intention is to ease you into the process, as dealing with variable tempos or lengthy tracks can lead to frustration.
+
+- Choose a track that has a clear leading instrument (or vocal!) to follow. Given SRXD's nature, electronic music is a generally easy recommendation here.
+- Choose a track that has a steady tempo. Variable BPM/live plays present another layer of complexity that's better to tackle after grasping the basics of charting.
+- Choose a track that you're willing to listen to many, many times during the process. But also, a track that's not your all-time favorite.
+Save it for when you've got some experience, so you can do it justice later.
+- Lastly, choose a reasonably short track (up to 4 minutes), as it'll be easier to finish before hitting the point of frustration or burnout. It's also easier
+for other potential playtesters to go through it quickly and give you feedback.
+
+No one should stop you from charting a 30-minute megamix or medley on your first try if you're determined though. More power to you!
+
+### Audio quality
+
+Ideally, the source file of your track should be of the highest quality available, as it's going to unavoidably get somewhat downgraded before importing
+into the game. As a general rule of thumb: 
+- Prioritize obtaining a **`.FLAC` or .`WAV`** format file of your track. 
+- Alternatively, a **256Kbps bitrate** or better **`.MP3`** file can work, as it's the only other format supported by SRXD.
+- **Heavily discouraged**, unless the track is quite literally not available anywhere else: YouTube rips.
+
+<Aside type='tip' title='Hey!'>
+
+Consider, whenever possible, purchasing the track you're charting. By doing so, you're both supporting the artist and improving your own experience
+when it comes to **[Tempomapping](../tempomapping)**. This is **especially** important with tracks on the lengthier side.
+
+Your best bet here is to look for it on services like [Bandcamp](https://bandcamp.com/), [Beatport](https://www.beatport.com/), [OTOTOY](https://ototoy.jp/), etc. 
+
+</Aside>
+
+### Exporting with Audacity
+
+Lorem ipsum dolor sit amet.
+
+### Importing the audio into SRXD
+
+By default, SRXD stores custom content at the following path:
+```
+C:\Users\[USER]\AppData\LocalLow\Super Spin Digital\Spin Rhythm XD\Custom
+```
+
+<FileTree>
+
+- Custom
+    - AlbumArt
+        - ...
+    - AudioClips
+        - ...
+    - Autosave
+        - ...
+    - Previous&nbsp;Saves 
+        - ...
+    - Example.srtb
+    - Custom.srtb
+
+</FileTree>
+
+You can easily access this directory using the `Show files` button in the Custom side panel in-game.
+
+<Image src={panelImage} alt="Location of Show files button" width={512} decoding='async' loading='lazy' />
+
+Once your audio file is ready, mvoe it into the **`AudioClips`** folder.

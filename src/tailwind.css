@@ -19,7 +19,15 @@ tbody td {
     @apply border border-neutral-900 p-2 !important;
 }
 
-/* tbody tr:nth-child(even) {
-    @apply bg-neutral-900;
-} */
-  
+tbody tr:nth-child(even) {
+    @apply bg-neutral-700 bg-opacity-10 !important;
+}
+
+code {
+    @apply bg-neutral-200 bg-opacity-10 text-red-300 !important;
+}
+
+:root {
+    --sl-content-width: 50rem;
+    --sl-text-5xl: 3.5rem;
+}
