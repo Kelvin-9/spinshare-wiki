@@ -10,6 +10,15 @@ export default defineConfig({
 	site: 'https://useredge.github.io',
 	base: '/spinshare-wiki',
 
+	vite: {
+		resolve: {
+			alias: {
+				"@images": '/src/assets/images',
+				"@assets": '/src/assets'
+			}
+		}
+	},
+
 	integrations: [
 		starlight({
 

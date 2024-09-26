@@ -1,11 +1,12 @@
 ---
-title: Basic audio setup
+title: Audio file setup
 description: Let's get your audio file set up and ready to import in the editor!
+sidebar:
+    order: 1
 ---
 
 import { Aside, FileTree } from "@astrojs/starlight/components"
 import { Image } from "astro:assets"
-import panelImage from "../../../../assets/images/audio/custom-side-panel.png"
 
 The natural first step to start working on a new chart is setting up the audio file of the song in question.
 Check the **Quick Start** steps for a quick summary.
@@ -14,7 +15,7 @@ Check the **Quick Start** steps for a quick summary.
 
 1. Install **[Audacity](https://www.audacityteam.org/download/)**
     - If your source file is in a `.m4a` or `.aac` format, you may need to install the **[ffmpeg for windows](https://support.audacityteam.org/basics/installing-ffmpeg)** addon
-2. Find, or calculate, your songs' **BPM**. This will be necessary for **[Tempomapping](../tempomapping)**.
+2. Find, or calculate, your songs' **BPM**. This will be necessary for **[Tempomapping](../basic-tempomapping)**.
 3. **Export** your song as an `.ogg` (or obtain an `.mp3`) file.
 
 ## A note on song selection for beginners
@@ -36,7 +37,7 @@ No one should stop you from charting a 30-minute megamix or medley on your first
 <Aside type='tip' title='Hey!'>
 
 Consider, whenever possible, purchasing the track you're charting. By doing so, you're both supporting the artist and improving your own experience
-when it comes to **[Tempomapping](../tempomapping)**. This is **especially** important with tracks on the lengthier side.
+when it comes to **[Tempomapping](../basic-tempomapping)**. This is **especially** important with tracks on the lengthier side.
 
 Your best bet here is to look for it on services like [Bandcamp](https://bandcamp.com/), [Beatport](https://www.beatport.com/), [OTOTOY](https://ototoy.jp/), etc. 
 
@@ -69,9 +70,9 @@ C:\Users\[USER]\AppData\LocalLow\Super Spin Digital\Spin Rhythm XD\Custom
 <FileTree>
 
 - Custom
-    - AlbumArt 
+    - AlbumArt ← album art files go here!
         - ...
-    - AudioClips ← here!
+    - AudioClips ← audio files go here!
         - ...
     - Autosave
         - ...
@@ -79,11 +80,16 @@ C:\Users\[USER]\AppData\LocalLow\Super Spin Digital\Spin Rhythm XD\Custom
         - ...
     - Example.srtb
     - Custom.srtb
+    - BACKUP_Example.zip
 
 </FileTree>
 
 You can easily access this directory using the `Show files` button in the Custom side panel in-game.
 
-<Image src={panelImage} alt="Location of Show files button" width={512} decoding='async' loading='lazy' />
+![Location of the Show files button](@images/audio/custom-side-panel.png)
 
-Once your audio file is ready, mvoe it into the **`AudioClips`** folder.
+{/* <Image src={panelImage} alt="Location of Show files button" width={512} decoding='async' loading='lazy' /> */}
+
+Once your audio file is ready, move it into the **`AudioClips`** folder.
+
+You're set and ready to move on to [Tempomapping](../basic-tempomapping)!
