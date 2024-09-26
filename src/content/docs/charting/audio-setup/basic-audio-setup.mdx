@@ -10,14 +10,14 @@ import panelImage from "../../../../assets/images/audio/custom-side-panel.png"
 The natural first step to start working on a new chart is setting up the audio file of the song in question.
 Check the **Quick Start** steps for a quick summary.
 
-### Quick Start
+## Quick Start
 
 1. Install **[Audacity](https://www.audacityteam.org/download/)**
     - If your source file is in a `.m4a` or `.aac` format, you may need to install the **[ffmpeg for windows](https://support.audacityteam.org/basics/installing-ffmpeg)** addon
 2. Find, or calculate, your songs' **BPM**. This will be necessary for **[Tempomapping](../tempomapping)**.
 3. **Export** your song as an `.ogg` (or obtain an `.mp3`) file.
 
-### A note on song selection for beginners
+## A note on song selection for beginners
 
 The following are **purely recommendations** on picking a track to chart for those starting out on their charting journey.
 The intention is to ease you into the process, as dealing with variable tempos or lengthy tracks can lead to frustration.
@@ -31,13 +31,7 @@ for other potential playtesters to go through it quickly and give you feedback.
 
 No one should stop you from charting a 30-minute megamix or medley on your first try if you're determined though. More power to you!
 
-### Audio quality
-
-Ideally, the source file of your track should be of the highest quality available, as it's going to unavoidably get somewhat downgraded before importing
-into the game. As a general rule of thumb: 
-- Prioritize obtaining a **`.FLAC` or .`WAV`** format file of your track. 
-- Alternatively, a **256Kbps bitrate** or better **`.MP3`** file can work, as it's the only other format supported by SRXD.
-- **Heavily discouraged**, unless the track is quite literally not available anywhere else: YouTube rips.
+## Audio quality
 
 <Aside type='tip' title='Hey!'>
 
@@ -48,11 +42,24 @@ Your best bet here is to look for it on services like [Bandcamp](https://bandcam
 
 </Aside>
 
-### Exporting with Audacity
+Ideally, the source file of your track should be of the highest quality available, as it's going to unavoidably get somewhat downgraded before importing
+into the game. As a general rule of thumb: 
+- Prioritize obtaining a **`.FLAC` or .`WAV`** format file of your track. 
+- Alternatively, a **256Kbps bitrate** or better **`.MP3`** file can work, as it's the only other format supported by SRXD.
+- **Heavily discouraged**, unless the track is quite literally not available anywhere else: YouTube rips.
 
-Lorem ipsum dolor sit amet.
+## Exporting with Audacity
 
-### Importing the audio into SRXD
+<Aside type='note'>
+
+This step is only necessary if you're exporting from a FLAC or WAVE source file.
+If your're working with an `.mp3` source file, you can move on to [importing the file](#importing-the-audio-into-srxd).
+
+</Aside>
+
+file -> export ogg quality 8 -> doned
+
+## Importing the audio into SRXD
 
 By default, SRXD stores custom content at the following path:
 ```
@@ -62,9 +69,9 @@ C:\Users\[USER]\AppData\LocalLow\Super Spin Digital\Spin Rhythm XD\Custom
 <FileTree>
 
 - Custom
-    - AlbumArt
+    - AlbumArt 
         - ...
-    - AudioClips
+    - AudioClips ← here!
         - ...
     - Autosave
         - ...

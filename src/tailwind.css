@@ -27,6 +27,10 @@ code {
     @apply bg-neutral-200 bg-opacity-10 text-red-300 !important;
 }
 
+blockquote {
+    @apply opacity-50 !important; 
+}
+
 :root {
     --sl-content-width: 50rem;
     --sl-text-5xl: 3.5rem;
