@@ -33,7 +33,7 @@ Next, launch `ArrowVortex.exe`. You'll be presented with the following view.
 
 Next:
 
-    1. Drag-and-drop, or `File -> Open...`, your exported audio file. 
+    1. Drag-and-drop, or `File -> Open...`, your [exported](../../audio-setup/basic-audio-setup#exporting-with-audacity) audio file. 
     2. In `View`, enable `Time based (C-mod)`. This will allow you to see the waveform of the track.
     You can zoom further in and out with `Ctrl + Mouse wheel`.
     3. In `Tempo`, click on `Adjust sync...`. You'll be presented with the following menu: 
@@ -47,11 +47,11 @@ Next:
         > Arrow Vortex can return multiple results whenever you're working with tracks that may have an "unquantized" section 
         > (most likely the intro like in this example).  
         > Furthermore, its' most confident result could have an unrounded BPM value or a slightly incorrect offset. 
-        > It is usually safe to round up the BPM value unless 
+        > It is usually safe to round up the BPM value unless it is that exact.  
         > As for the offset, AV might've placed the beat one or two ticks forward/back. Use the buttons next to `Move first beat` to adjust it.
         > Then, you can zoom in even further to make tiny adjustments (in the order of milliseconds) to accurately match the beat ticks to the waveform.
     
-    5. Make any necessary adjustments to accurately match the waveform with the beat ticks.
+    5. Enable the **metronome** by pressing `F3`, listen through the track and make any necessary adjustments to accurately match the waveform with the beat ticks.
 
     | Original result | Adjusted |
     | :---: | :---: |
@@ -59,6 +59,10 @@ Next:
 
     In the example above, the offset was adjusted by one beat up, then incremented by `+0.007`, yielding the new offset result of `0.078`.
     This value, alongside the BPM, will be the value you assign to the **first BPM marker** in your chart in the SRXD editor. Take note of it somewhere.
+
+<Aside type='caution'>
+Arrov Vortex treats the offset value in the opposite direction, compared to SRXD. In this case, you'll have to invert it, making the end result `-0.078`.
+</Aside>
 
 ### Using charts from other games
 
@@ -96,8 +100,8 @@ To access it, cycle through the editor modes using the `` ` `` key (backtick, by
 ![Tap BPM tool location in-game](@images/tempomapping/srxd-clip-editor-bpm-tap.png)
 
 To double check the accuracy of your values, you can let the song play and enable the metronome with the dedicated button above, 
-or with the `Ctrl + C` global hotkey combo.
+or with the `Shift + C` global hotkey combo.
 
 ## Adjusting the first tempo marker
 
-Now that we've determined the correct BPM and offset values for ur track, it's time to use them in our SRXD chart.
+Now that we've determined the correct BPM and offset values for your track, it's time to use them in our SRXD chart.

@@ -28,7 +28,7 @@ code {
 }
 
 blockquote {
-    @apply opacity-75 !important; 
+    @apply border-l-4 bg-neutral-300 bg-opacity-5 opacity-75 !important; 
 }
 
 :root {
