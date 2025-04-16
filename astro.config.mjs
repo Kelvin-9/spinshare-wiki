@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import starlightUtils from '@lorenzo_lewis/starlight-utils'
+// import starlightUtils from '@lorenzo_lewis/starlight-utils'
 import tailwind from '@astrojs/tailwind';
 import starlightImageZoomPlugin from 'starlight-image-zoom';
 
@@ -26,15 +26,7 @@ export default defineConfig({
 				src: './src/assets/custom-icons/Icon_colored.svg',
 			},
 
-			plugins: [starlightUtils({
-				multiSidebar: {
-					switcherStyle: 'dropdown'
-				},
-				navLinks: {
-					leading: { useSidebarLabelled: "leadingNavLinks" },
-				}
-				
-			}),
+			plugins: [
 			starlightImageZoomPlugin(),
 		],
 
@@ -89,11 +81,11 @@ export default defineConfig({
 			},
 
 			title: 'SpinShare Wiki',
-			social: {
-				github: 'https://github.com/useredge/spinshare-wiki',
-				discord: 'https://spinsha.re/discord',
-				"x.com": 'https://x.com/@WeAreSpinShare',
-			},
+			// social: {
+			// 	github: 'https://github.com/useredge/spinshare-wiki',
+			// 	discord: 'https://spinsha.re/discord',
+			// 	"x.com": 'https://x.com/@WeAreSpinShare',
+			// },
 			sidebar: [
 				{
 					label: 'Guides',

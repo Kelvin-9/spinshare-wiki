@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 #VSC
 .vscode
+
+# pnpm lock
+pnpm-lock.yaml
