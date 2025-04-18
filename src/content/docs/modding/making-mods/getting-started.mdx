@@ -16,11 +16,11 @@ Obviously, modding requires you know how to code in C#. It is highly recommended
 
 To make a mod, you will need:
 - A .NET SDK installed that compiles .NET Framework or .NET Standard
-  - If you are on Windows, you can get away with using .NET Framework
-  - If you are on Linux, install any recent .NET SDK and make your mod using .NET Standard 2.0 or 2.1
+    - If you are on Windows, you can get away with using .NET Framework
+    - If you are on Linux, install any recent .NET SDK and make your mod using .NET Standard 2.0 or 2.1
 - A C# IDE
-  - If you are on Windows, you can choose between Visual Studio or Rider.
-  - If you are on Linux, we recommend you use Rider.
+    - If you are on Windows, you can choose between Visual Studio or Rider.
+    - If you are on Linux, we recommend you use Rider.
 
 ### Making your project
 
@@ -28,12 +28,12 @@ Open your IDE of choice and create a new **class library** targeting either .NET
 
 Before writing any code, you will need to add references to these files from your game directory:
 - `BepInEx/core/`
-  - `BepInEx.dll`
-  - `0Harmony.dll`
+    - `BepInEx.dll`
+    - `0Harmony.dll`
 - `SpinRhythm_Data/Managed/`
-  - `Assembly-CSharp.dll`
-  - `UnityEngine.dll`
-  - `UnityEngine.CoreModule.dll`
+    - `Assembly-CSharp.dll`
+    - `UnityEngine.dll`
+    - `UnityEngine.CoreModule.dll`
 
 Every plugin needs a main plugin class. Rename `Class1.cs` to something like `Plugin.cs` or `Main.cs`, then have your main class look like this:
 ```cs
