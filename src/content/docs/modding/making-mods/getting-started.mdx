@@ -1,0 +1,83 @@
+---
+title: Making Mods: Getting Started
+description: Want to create a mod for the game? Look here!
+prev: false
+---
+
+Ever wanted to make a mod for the game? Here's how to get you started.
+
+## Creating your mod
+
+There is no standard template for making a mod (yet), so here's a step-by-step guide on making your mod.
+
+### Prerequisites
+
+Obviously, modding requires you know how to code in C#. It is highly recommended you have experience with Reflection in C# before making your first mod. Although it is not a hard requirement, Reflection is one of the core principles of C# that makes modding possible.
+
+To make a mod, you will need:
+- A .NET SDK installed that compiles .NET Framework or .NET Standard
+  - If you are on Windows, you can get away with using .NET Framework
+  - If you are on Linux, install any recent .NET SDK and make your mod using .NET Standard 2.0 or 2.1
+- A C# IDE
+  - If you are on Windows, you can choose between Visual Studio or Rider.
+  - If you are on Linux, we recommend you use Rider.
+
+### Making your project
+
+Open your IDE of choice and create a new **class library** targeting either .NET Framework 4.7.2 or 4.8, or .NET Standard 2.0 or 2.1.
+
+Before writing any code, you will need to add references to these files from your game directory:
+- `BepInEx/core/`
+  - `BepInEx.dll`
+  - `0Harmony.dll`
+- `SpinRhythm_Data/Managed/`
+  - `Assembly-CSharp.dll`
+  - `UnityEngine.dll`
+  - `UnityEngine.CoreModule.dll`
+
+Every plugin needs a main plugin class. Rename `Class1.cs` to something like `Plugin.cs` or `Main.cs`, then have your main class look like this:
+```cs
+using BepInEx;
+
+namespace YourMod
+{
+    [BepInPlugin(Guid, Name, Version)]
+    internal class Plugin : BaseUnityPlugin             // Plugin or Main, whatever you named your file.
+    {
+        private const string Guid = "your.mod.guid";    // Globally Unique Identifier, usually follows the convention com.yourwebsite.yourmod
+        private const string Name = "Your Mod Name";    // Your mod name
+        private const string Version = "0.1.0";         // Mod version, follows semantic versioning https://semver.org/
+
+        private void Awake()
+        {
+            Logger.LogInfo("Hello from ${Name}!");
+        }
+    }
+}
+```
+
+Build your mod, then go in your build files and copy `YourMod.dll` into the game's BepInEx plugins directory.
+Launch the game and you should see "Hello form Your Mod Name!" in the console. Congratulations, you made your first mod!
+
+### Automatically copy your mod when building
+
+You probably don't want to copy your mod to the game's directory everytime, and that's very understandable. But what if I told you that you can tell the compiler to automatically copy your mod every time it is rebuilt?
+
+Open your project's .csproj file, and add these lines before the closing `</Project>` tag:
+
+```xml
+    <Target Name="PostBuildScript" AfterTargets="AfterBuild">
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="<path to srxd>\BepInEx\plugins" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" />
+    </Target>
+
+    <Target Name="CopyPdbFile" AfterTargets="AfterBuild" Condition="'$(Configuration)' == 'Debug' And '$(OS)' == 'Unix'">
+        <Copy SourceFiles="$(TargetDir)\$(ProjectName).pdb" DestinationFolder="<path to srxd>\BepInEx\plugins" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" />
+    </Target>
+```
+These 2 targets will copy your mod to the plugins directory every time it is rebuilt, and when you build your mod in debug mode, the associated `pdb` file will also be copied to the plugins directory to use when debugging.
+
+Note: the second MSBuild target will only work if your project name matches the name of your mod. If it doesn't work, try modifying `$(ProjectName).pdb` to the actual name of the file.
+
+## Where to go next?
+
+You made your first mod. Well done! From here on out, you have the freedom to do pretty much anything you want.
