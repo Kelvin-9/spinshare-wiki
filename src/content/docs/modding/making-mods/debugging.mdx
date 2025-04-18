@@ -1,0 +1,25 @@
+---
+title: Debugging your mod
+description: Here's how you can attach a debugger to the game to debug your mod.
+prev: false
+---
+
+## Debugging your mod
+
+Unity Doorstop (the loading mechanism for BepInEx) comes with a debugging server. If you want to debug your mod:
+- Open `doorstop_config.ini` and set `debug_enabled` to `true`.
+    - If you need to debug something that happens right when the game launches, you can set the `debug_suspend` setting to `true`. When launching, the game will then pause until a debugger is attached.
+- Add a debugging target to your IDE
+    - If you're using Visual Studio, head to Debug -> Attach Unity Debugger -> Input IP -> `127.0.0.1:10000`.
+    - If you're using Rider, head to Run -> Attach to Unity Process -> Add player address manually -> `127.0.0.1:10000`.
+- Run the game
+- Run the debugging session.
+
+Some notes:
+- You can ONLY debug Managed code (compiled C#)
+- You can only debug your mod if it is compiled in Debug mode AND its associated pdb file is present right next to the mod in your BepInEx plugins directory.
+- You can only attach the debugger when the game is running. If you need to debug something that happens right as the game starts, enable the `debug_suspend` option in the doorstop config to prevent the game from running until a debugger is attached.
+
+The advantages of debugging should be fairly obvious:
+- You can place breakpoints and have the game pause when code with a breakpoint is reached.
+- You can analyze the game's and mod's memory at runtime thanks to the debugger.

@@ -1,0 +1,68 @@
+---
+title: Useful modding tools
+description: A list of useful tools for modding
+prev: false
+---
+
+## C# decompiler
+
+**IT IS ILLEGAL TO SHARE DECOMPILED GAME CODE. PLEASE DO NOT SHARE DECOMPILED GAME CODE UNLESS SAID GAME IS ALREADY OPEN-SOURCE**
+
+In order to mod anything, you need to learn how the game works, and there's no better way than decompiling and reverse-engineering the game's code.
+
+For Windows, you have 2 choices:
+- [dnSpy](https://github.com/dnSpy/dnSpy)/[dnSpyEx](https://github.com/dnSpyEx/dnSpy)/[ILSpy](https://github.com/icsharpcode/ILSpy): the free and open-source option
+- [dotPeek](https://www.jetbrains.com/decompiler/): JetBrains' .NET decompiler. Fairly powerful, free, but proprietary
+
+Unfortunately for Linux there are no really good options. Your best options are:
+- [AvaloniaILSpy](https://github.com/icsharpcode/AvaloniaILSpy): a port of ILSpy's UI to Avalonia which mostly works, but has many flaws
+- Running dnSpy/ILSpy/dotPeek through Wine, though you lose on stability.
+
+Simply open your decompiler of choice and run `Assembly-CSharp.dll` through. You can now explore all the scripts that make up the game.
+
+Decompilers are an essential tool when modding, and it becomes even more invaluable when it comes to writing Transpiler patches.
+
+## BepInEx Assembly Publicizer
+
+If you find yourself needing to access lots of protected, private or internal code in your mod, this magical solution allows you to make an entire assembly public for easier access to everything.
+
+You have 2 main ways of using it:
+
+### Publicizing at build time
+
+Add a reference to the NuGet package `BepInEx.AssemblyPublicizer.MSBuild` to your project, then go to whichever reference you want to publicize and add `Publicize="true"` within the opening tag for the reference, like so:
+```xml
+<!-- Publicize a reference -->
+<Reference Include="<path to some dll>/SomeDll.dll" Publicize="true" />
+
+<!-- This also works with projects and packages! -->
+<ProjectReference Include="<path to some project>/SomeProject.csproj" Publicize=true" />
+<PackageReference Include="Some.NuGet.Package" Publicize="true" />
+```
+
+### Publicizing manually
+
+Install the assembly publicizer cli tool and use it on assemblies manually.
+```
+dotnet tool install -g BepInEx.AssemblyPublicizer.Cli
+```
+
+```
+assembly-publicizer /path/to/your/assembly.dll
+assembly-publicizer /path/to/your/assembly.dll --strip
+assembly-publicizer /path/to/your/assembly.dll --strip-only
+```
+
+The `--strip` option removes all code within method bodies, while publicizing everything.
+
+The `--strip-only` option removes all code within method bodies, but doesn't publicize anything.
+
+## Unity Explorer
+
+Unity Explorer is a mod that allows you to analyze GameObjects at runtime. It is immensely helpful whevener you need to manipulate GameObjects in your mods.
+
+The mod is discontinued, but it is still an insanely useful asset for modding.
+
+[Link to the latest version of the mod](https://github.com/sinai-dev/UnityExplorer/releases/tag/4.9.0)
+
+Note: Unity Explorer goes wonky with SRXD. Head over to the Unity Explorer config and set the `Disable EventSystem Override` setting to `true`.
