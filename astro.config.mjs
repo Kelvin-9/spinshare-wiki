@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-// import starlightUtils from '@lorenzo_lewis/starlight-utils'
 import tailwind from '@astrojs/tailwind';
 import starlightImageZoomPlugin from 'starlight-image-zoom';
 
