@@ -1,0 +1,48 @@
+---
+title: 基本圖表
+description: All the basics, best practices and general advice, all in one place. If you're a beginner charter, this page will help you with putting together a great first chart!
+---
+
+import { Aside, FileTree } from "@astrojs/starlight/components"
+
+All the basics, best practices and general advice, all in one place. If you're a beginner charter, this page will help you with putting together a great first chart!
+
+## The Basics
+
+### File components of a chart
+
+- The **song file**: an `.ogg` or `.mp3` file, that you've exported in the [Exporting with Audacity](../../audio-setup/basic-audio-setup#exporting-with-audacity) step.
+- The **album art**: a `.jpg` or `.png` file displayed as the cover image in-game. 
+- The **chart** itself: an `.srtb` file, known as **Spin Rhythm Track Bundle**. It contains all note, timing and related assets data.
+
+The file tree below shows where to locate and place all the components:
+
+<FileTree>
+
+- C:\Users\[USER]\AppData\LocalLow\Super&nbsp;Spin&nbsp;Digital\Spin&nbsp;Rhythm&nbsp;XD\Custom
+    - AlbumArt ← put your album art covers here!
+        - cover.png
+        - cover.jpg
+    - AudioClips ← put your exported audio files here!
+        - song.ogg
+        - song.mp3
+    - Autosave 
+        - Example.srtb ← created every time you edit the chart
+    - Previous&nbsp;Saves 
+        - Example.srtb ← created every time you save the chart
+    - Example.srtb ← the chart file itself
+    - BACKUP_Example.zip ← a bundled export that contains all the files needed to upload the chart to SpinShare
+</FileTree>
+
+<Aside type='note'>
+Most of the time, the filename of the .SRTB will correspond to the name of your song, without any characters that [**Windows/Linux don't allow**](https://stackoverflow.com/a/31976060).
+The SRXD editor will also not allow you to input said characters in the Title field of your chart info.  
+If your song uses any of those characters in its' title, it is possible to insert them back through [**manual SRTB editing**]().
+</Aside>
+
+### Note types
+
+| Tap note | Match note | Spin left | Spin right |
+| :--- | :--- | :--- | :--- |
+| ![Tap note](@images/charting/tap-note.png) | ![Match note](@images/charting/match-note.png) | ![Spin left note note](@images/charting/spin-left-note.png) | ![Spin right note](@images/charting/spin-right-note.png) |
+| Requires a timed wheel input by all playstyles and for the wheel to be lined up | Requires only the wheel to be lined up | Requires a quick flick to the left | Requires a quick flick to the left |

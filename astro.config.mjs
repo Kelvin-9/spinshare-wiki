@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwind from '@astrojs/tailwind';
 import starlightImageZoomPlugin from 'starlight-image-zoom';
+import starlightSidebarTopics from "starlight-sidebar-topics";
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,7 +27,69 @@ export default defineConfig({
 			},
 
 			plugins: [
-			starlightImageZoomPlugin(),
+				starlightImageZoomPlugin(),
+				starlightSidebarTopics(
+					[
+						// {
+						// 	label: '# general',
+						// 	link: '/spinshare-wiki',
+						// 	icon: 'open-book',
+						// 	id: 'general',
+						// 	items: {
+						// 		autogenerate: { directory: '/docs/**' },
+						// 		exclude: { directory: '/docs/**' },
+						// 	}
+						// },
+						{
+							label: '# modding',
+							link: '/modding',
+							icon: 'puzzle',
+							id: 'modding',
+							items: [
+								{
+									label: 'Getting started',
+									link: '/modding'
+								},
+								{
+									label: 'Installation guide',
+									link: '/modding/installation-guide'
+								},
+								{
+									label: 'Making mods',
+									autogenerate: { directory: '/modding/making-mods' }
+								}
+							]
+						},
+						{
+							label: '# charting',
+							link: '/charting',
+							icon: 'pencil',
+							id: 'charting',
+							items: [
+								{
+									label: 'Getting started',
+									link: '/charting'
+								},
+								{
+									label: 'Audio-setup',
+									autogenerate: { directory: '/charting/audio-setup' }
+								},
+								{
+									label: 'Charting guide',
+									autogenerate: { directory: '/charting/charting-guide' }
+								}
+							]
+						}
+					],
+					{
+						exclude: ['/beginnerguide', '/docs/**', '/docs/**/*', '/docs', 'beginnerguide'],
+						topics: {
+							charting: ['/charting', '/charting/**/*'],
+							modding: ['/modding', '/modding/**/*'],
+							starter: ['/docs'],
+						}
+					}
+				)
 		],
 
 			defaultLocale: 'root',
@@ -80,45 +143,59 @@ export default defineConfig({
 			},
 
 			title: 'SpinShare Wiki',
-			// social: {
-			// 	github: 'https://github.com/useredge/spinshare-wiki',
-			// 	discord: 'https://spinsha.re/discord',
-			// 	"x.com": 'https://x.com/@WeAreSpinShare',
-			// },
-			sidebar: [
-				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
-				},
-				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
-				},
-				{
-					label: 'Charting',
-					items: [
-						{ label: 'Getting started', slug: 'charting' },
-						{
-							label: 'Audio',
-							autogenerate: { directory: 'charting/audio-setup' }
-						},
-						{
-							label: 'Charting',
-							autogenerate: { directory: 'charting/charting-guide' }
-						},
-					],
-				},
-				{
-					label: "leadingNavLinks",
-					items: [
-						{ label: "Home", link: "/" },
-						{ label: "Charting", link: "/charting" },
-					]
-				},
+			social: [
+				{ icon: "github", label: "GitHub", href: "https://github.com/useredge/spinshare-wiki" },
+				{ icon: "discord", label: "SpinShare Discord", href: "https://spinsha.re/discord" },
+				{ icon: "blueSky", label: "Bluesky", href: "https://bsky.app/user/WeAreSpinSHare" },
 			],
+			// sidebar: [
+			// 	{
+			// 		label: 'Guides',
+			// 		items: [
+			// 			// Each item here is one entry in the navigation menu.
+			// 			{ label: 'Example Guide', slug: 'guides/example' },
+			// 		],
+			// 	},
+			// 	{
+			// 		label: 'Reference',
+			// 		autogenerate: { directory: 'reference' },
+			// 	},
+			// 	{
+			// 		label: 'Charting',
+			// 		items: [
+			// 			{ label: 'Getting started', slug: 'charting' },
+			// 			{
+			// 				label: 'Audio',
+			// 				autogenerate: { directory: 'charting/audio-setup' }
+			// 			},
+			// 			{
+			// 				label: 'Charting',
+			// 				autogenerate: { directory: 'charting/charting-guide' }
+			// 			},
+			// 		],
+			// 	},
+			// 	{
+			// 		label: 'Modding',
+			// 		items: [
+			// 			{ label: 'Getting started with modding', slug: 'modding' },
+			// 			{
+			// 				label: "installation guide",
+			// 				link: 'modding/installation-guide',
+			// 			},
+			// 			{
+			// 				label: 'Making mods',
+			// 				autogenerate: { directory: 'modding/making-mods' }
+			// 			}
+			// 		],
+			// 	},
+			// 	{
+			// 		label: "leadingNavLinks",
+			// 		items: [
+			// 			{ label: "Home", link: "/" },
+			// 			{ label: "Charting", link: "/charting" },
+			// 		]
+			// 	},
+			// ],
 
 			customCss: ['./src/tailwind.css'],
 
