@@ -1,0 +1,12 @@
+---
+import { Badge } from '@astrojs/starlight/components'
+import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro'
+---
+
+<SiteTitle>
+    <slot />
+</SiteTitle>
+
+<div class="text-center flex items-center px-2">
+<Badge text="Work In Progress" variant="caution" />
+</div>
