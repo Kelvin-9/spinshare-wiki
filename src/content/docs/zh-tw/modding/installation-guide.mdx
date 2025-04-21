@@ -1,0 +1,106 @@
+---
+title: Mod Installation Guide
+description: Look here if you're new to installing mods.
+prev: false
+---
+
+If you're new to the Spin Rhythm XD modding scene, you've come to the right place!
+
+This guide will help you with the process of installing mods for the game. The setup works for Windows and Linux (not macOS unfortunately), but there are some platform-specific steps you will need to take.
+
+## Step 0 (Linux only)
+
+If you are running the Linux version of the game (or if you are playing on a Steam Deck), you are running the native Linux build of the game, which doesn't ship with a Mono build of the game.
+
+You will need to switch to the Windows version of the game. To do so:
+1. Open Steam
+2. Head over to the game's properties
+3. Go to the Compatibility Tab
+4. Check the box and select any latest Proton Version (Proton 9 or Experimental, whichever one you prefer)
+5. Wait for the game to download
+
+Obviously there are some downsides to running the game non-natively:
+- Customs are stored in a different folder, and you may need to reinstall your charts or use a symbolic link (if you don't know what a symbolic link, please do not attempt a manual fix)
+- The game may run a little worse
+- MIDI devices don't work
+
+With that said and done, you are now ready to install BepInEx and mods!
+
+## Step 1
+
+First, download BepInEx [using this link](https://github.com/BepInEx/BepInEx/releases/download/v5.4.23.2/BepInEx_win_x64_5.4.23.2.zip).
+
+Once downloaded, extract the archive's contents directly in your game directory. **Your directory must look something like this:**
+```
+Spin Rhythm/
+| BepInEx/
+| SpinRhythm_Data/
+| doorstop_config.ini
+| GameAssembly.dll
+| SpinRhythm.exe
+| UnityPlayer.dll
+| UnityPlayer_Mono.dll
+| winhttp.dll
+```
+
+You must have noticed there are 2 UnityPlayer.dll files. Right now the game is running on Unity's IL2CPP backend. To get mods running, you need to switch the game from using IL2CPP to using Mono. To do so:
+- Rename `UnityPlayer.dll` to something else
+  - It could be `UnityPlayer_IL2CPP.dll` or `UnityPlayer.dll.bak` if you want, but I usually go for the former
+- Rename `UnityPlayer_Mono.dll` to **exactly** `UnityPlayer.dll`
+
+Once this is done, you can run the game once, then close it. Double check that the folders `plugins` and `config` have been created in the `BepInEx` directory. If they haven't, either you have installed BepInEx not correctly, or, in the case of running Linux or Steam Deck, please refer to Step 3.
+
+## Step 2
+
+Installing mods is fairly straightforward. Simply download the mod you want to install (must have a `.dll` extension. If you downloaded a zip, extract its contents), and place the mod inside your `BepInEx/plugins` directory. Any dll file placed here will be loaded when the game runs, so long as it's a valid BepInEx mod.
+
+## Step 3 (Linux only)
+
+If you ran the game, you might've noticed nothing generated in the BepInEx folder, and that's normal. BepInEx is loaded through the winhttp.dll file, which, by default, Proton completely ignores.
+
+To fix this, you need to edit the Proton config and add winhttp in the list of DLL overrides. You have 2 ways:
+- The simple easy way
+- The more permanent way
+
+### The simple easy way
+
+This way consists of adding the DLL override as a launch argument to the game. To do so:
+1. Open Steam
+2. Head over to the game's properties
+3. Paste this in the launch arguments: `WINEDLLOVERRIDES="winhttp=b,n" %command%`
+4. Launch the game
+
+BepInEx will now load with whatever mods you installed. Do note that if you remove this launch argument, BepInEx will no longer run.
+
+If you are running the game with other launch arguments (gamemoderun, or a script to connect the game's rich presence to Discord on Linux, or something else), launch arguments need to be structured like so: `WINEDLLOVERRIDES="winhttp=b,n" <other commands> %command%`
+
+### The more permanent way
+
+This way consists of changing the game's Proton prefix configuration. You will need:
+- protontricks
+
+1. Open protontricks
+2. Select Spin Rhythm XD in the list (if it doesn't appear, make sure you ran the game at least once with Proton!)
+3. Click OK a bunch of times
+4. Select "Select default prefix" and click OK
+5. Select "Run winecfg" and click OK
+6. Click on the Libraries tab
+7. Select winhttp in the selection box and click Add. winhttp should now show up as "builtin, native" in the list below.
+8. Click Apply and close everythimg
+9. Launch the game
+
+BepInEx will now load with whatever mods you installed. Do note that if you reinstall the game, you will need to repeat these steps.
+
+## Step 4 (optional but recommended)
+
+Some mods log messages in a console. Console logs are precious to mod developers. If any hiccups occur when playing, errors are logged in the console and in a log file, which is helpful information for both the player and the mod developer.
+
+To enable the logging console, head over to `BepInEx`, then `config`, and open `BepInEx.cfg` with any text editor (be it Notepad, Notepad++, Kate or even vim (please don't use vim)). Scroll down to `[Logging.Console]` and switch `Enabled = false` to `Enabled = true`, then save and close the file.
+
+From now on, whenever you run the game, a console will appear. Everything the game and mods log will show up here. There are a few notes though:
+- When starting, the game logs `[Error : BepInEx] Unable to start Unity log writer`. You can ignore this message.
+- In track select, a bunch of warnings get logged sparingly. I have no idea where these come from but you can pretty much ignore these messages.
+
+## Yayyy!!
+
+Congratulations, you have now modded your game! Have fun on your modded journey ;)

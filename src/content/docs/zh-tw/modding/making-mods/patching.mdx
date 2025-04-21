@@ -1,0 +1,197 @@
+---
+title: Patching 101
+description: The bread-and-butter of modding
+prev: false
+sidebar:
+    order: 2
+---
+
+Let's say you made your first mod, and you want to modify the game's behaviour, or trigger some events when something happens within the game. How do you do that? The answer is by patching.
+
+Patching is the bread-and-butter of modding. Patching consists of running a method before or after another method was called. Despite its simple nature, you'd be very surprised by how much you can get done with it.
+
+All the examples in this guide will be using abstract examples. In real modding, you'll need to refer to the actual methods you want to patch.
+
+## Patching a method
+
+For this example, we'll be using this class as a reference:
+```cs
+class Counter
+{
+    private int _number = 0;
+
+    public void Increment()
+    {
+        _number++;
+    }
+
+    public int GetNumber()
+    {
+        return _number;
+    }
+
+    public void SetNumber(int number)
+    {
+        _number = number;
+    }
+}
+```
+
+Like stated above, a patch is really just a method that runs before or after another method. But how do you make such a method, and how do you patch a method to begin with?
+
+Making a patch method is very simple. Let's say you want to rickroll someone when the counter above is incremented (method `Increment` called). First, create a class where all your patches should be stored. Then, make a new static method with what your patch should do:
+```cs
+public static void MyCustomPatch()
+{
+    System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+}
+```
+
+But when should this run? There's nothing else in the code that says "please call MyCustomPatch() when the game starts". You still need to tell Harmony how this is going to be patched.
+
+In our case, we said we wanted to patch the `Increment` method in the class `Counter`. So let's do that. Right above your patch method, you'll want to add these 2 lines:
+```cs
+[HarmonyPatch(typeof(Counter), nameof(Counter.Increment))]
+[HarmonyPostfix]
+```
+This tells Harmony 2 things:
+- `MyCustomPatch` will be run every time `Counter.Increment()` is called
+- `MyCustomPatch` will be run AFTER `Counter.Increment()`
+
+Note: patches can also be written in this format:
+```cs
+[HarmonyPatch(typeof(Counter), nameof(Counter.Increment))]
+class MyCustomPatch
+{
+    private static void Postfix()
+    {
+        ...
+    }
+}
+```
+This format is useful when you want to apply multiple different patches to the same method.
+
+We're almost done. There's one thing left: you need to tell Harmony where to load patches from. To do so, simply go to your mod's start function (in the case of BepInEx, this is the Awake method), create a new Harmony instance and register your patches:
+```cs
+Harmony harmony = new Harmony("your.mod.guid");
+harmony.PatchAll(typeof(MyPatchClass));
+```
+
+Congratulations, you wrote your first Harmony patch! Now, every time the `Counter.Increment` method is called, your custom patch will run and you'll get to enjoy a nice rickroll.
+
+But, patching doesn't stop here. Let's actually get some useful data from the methods we patch.
+
+## Getting data from methods
+
+This time we want to patch the method `Counter.SetNumber` so that it prints the value of `number`. To do so, write a patch method with the same arguments as the method you're patching:
+```cs
+[HarmonyPatch(typeof(Counter), nameof(Counter.SetNumber)]
+[HarmonyPostfix]
+public static void MyCustomArgumentPatch(int number)
+{
+    Debug.Log($"Counter was set to {number}");
+}
+```
+And you're pretty much done! When `Counter.SetNumber` is called, with say the argument `727`, your custom patch method will be called afterwards with the same `727` argument and will log "Counter was set to 727" on the logging console.
+
+But once again, getting data doesn't stop here. What if we could get data we don't normally have access to from our patch?
+
+## Injections: accessing fields and instances
+
+We'll be using the same counter example as above. This time we want to get the instance of the class `Counter` that was used to call the `Increment` method.
+This is done by adding an extra argument to your patch: an argument named `__instance` (2 underscores) with the same type as the class you're patching, which in our case is `Counter`.
+```cs
+[HarmonyPatch(typeof(Counter), nameof(Counter.Increment))]
+[HarmonyPostfix]
+private static void MyCustomInjectionPatch(Counter __instance)
+{
+    int number = __instance.GetNumber();
+    Debug.Log($"Counter is currently at {number}");
+}
+```
+Awesome! But we can go one step further. Thanks to Harmony, we can also request a field in the class we're patching. It can be any field, even one we don't have access to, so long as we have its name.
+Let's say we want to get the private `_number` field in our number class. This could be done with reflection already, but we can simply request the field to Harmony by adding it in our method arguments like so:
+```cs
+[HarmonyPatch(typeof(Counter), nameof(Counter.Increment))]
+[HarmonyPostfix]
+private static void MyCustomInjectionPatch2(int ___number)   // Note the triple underscore!
+{
+    Debug.Log($"Counter is currently at {___number}");
+}
+```
+A small note: no matter if our variable was named `__number`, `number` or `_number`, the argument name must start with 3 underscore characters, then the name of the variable without the leading underscore characters.
+
+You can also request access to those fields AND write a new value by prefixing your argument with `ref`:
+```cs
+[HarmonyPatch(typeof(Counter), nameof(Counter.Increment))]
+[HarmonyPostfix]
+private static void MyCustomInjectionPatch3(Counter __instance, ref int ___number)
+{
+    Debug.Log($"Counter is currently at {___number}");
+    ___number *= ___number;
+    Debug.Log($"Counter is now at {__instance.GetNumber()}");    // number was squared, the change should be reflected
+}
+```
+
+Amazing! But what if we could go all the way and affect the original method as well?
+
+## Prefix and Postfix patching
+
+You may have noticed that every patch we wrote so far was a Postfix patch. Harmony provides 4 different types of patches: Postfix, Prefix, Transpiler and Finalizer.
+
+Transpilers and Finalizers are beyond the scope of this guide. For now let's focus on how you can use Postfixes and Prefixes to alter a patched method.
+
+We'll once again take the `Counter` class example. Let's say we want to access what the `GetNumber` method returns. We can once again use an injection for this. Add an argument named `__result` with the same type as the original method's return type, which in our case is `int`.
+```cs
+[HarmonyPatch(typeof(Counter), nameof(Counter.GetNumber))]
+[HarmonyPostfix]
+private static void MyCustomReturnGetPatch(int __result)
+{
+    Debug.Log($"I got the number {__result}");
+}
+```
+
+And once again, just like accessing inner class fields, we can modify what the GetNumber method returns:
+```cs
+[HarmonyPatch(typeof(Counter), nameof(Counter.GetNumber))]
+[HarmonyPostfix]
+private static void MyCustomReturnSetPatch(ref int __result)
+{
+    __result = 727;
+}
+```
+
+Now whenever the `Counter.GetNumber` method is called, we will get only the number `727`.
+
+But modifying the original method doesn't stop here. Like stated at the top of this section, so far we only used Postfix patches. Let's turn our attention to Prefix patching and patching the `Counter.SetNumber` method.
+
+The main difference between Prefix patches and Postfix patches is that a Prefix patch runs before the patched method, and a postfix patch runs after the patched method. But this difference gives some more power to Prefix patches.
+
+Let's say we want to modify `Counter.SetNumber` so that the argument is squared. Just like modifying inner fields and returned values, write a patch that takes the same argument as `Counter.SetNumber`, but this time, prefix the argument with `ref`:
+```cs
+[HarmonyPatch(typeof(Counter), nameof(Counter.SetNumber))]
+[HarmonyPrefix]
+private static void MyCustomPrefixPatch(ref int number)
+{
+    number *= number;
+}
+```
+Now, if we were to call `Counter.SetNumber` with, for example, the number `5`, the original method will instead get the number `25` thanks to our patch.
+
+Finally, by being executed before the original method, prefix patches can also straight up prevent the original method from running. Do note that in actual modding scenarios, you'll want to use this sparingly, because other patches might rely on the method you want to skip.
+
+To make a prefix patch that skips the original method, you need to write a patch that returns a bool. The method must return `true` if the original method should run, and `false` if it shouldn't.
+Let's demonstrate this by blocking the execution of `Counter.Increment` when the number reaches 10:
+```cs
+[HarmonyPatch(typeof(Counter), nameof(Counter.Increment))]
+[HarmonyPrefix]
+private static bool MyCustomSkippingPrefixPatch(Counter __instance)
+{
+    return __instance.GetNumber() != 10;
+}
+```
+From now on, if Counter ever reaches 10, `Counter.Increment` will no longer do anything.
+
+## Well done!
+
+Congratulations! Now you should have a good understanding of the basics of Prefix and Postfix patches. You are now ready to embark on your modding journey!

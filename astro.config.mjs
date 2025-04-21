@@ -148,54 +148,6 @@ export default defineConfig({
 				{ icon: "discord", label: "SpinShare Discord", href: "https://spinsha.re/discord" },
 				{ icon: "blueSky", label: "Bluesky", href: "https://bsky.app/user/WeAreSpinSHare" },
 			],
-			// sidebar: [
-			// 	{
-			// 		label: 'Guides',
-			// 		items: [
-			// 			// Each item here is one entry in the navigation menu.
-			// 			{ label: 'Example Guide', slug: 'guides/example' },
-			// 		],
-			// 	},
-			// 	{
-			// 		label: 'Reference',
-			// 		autogenerate: { directory: 'reference' },
-			// 	},
-			// 	{
-			// 		label: 'Charting',
-			// 		items: [
-			// 			{ label: 'Getting started', slug: 'charting' },
-			// 			{
-			// 				label: 'Audio',
-			// 				autogenerate: { directory: 'charting/audio-setup' }
-			// 			},
-			// 			{
-			// 				label: 'Charting',
-			// 				autogenerate: { directory: 'charting/charting-guide' }
-			// 			},
-			// 		],
-			// 	},
-			// 	{
-			// 		label: 'Modding',
-			// 		items: [
-			// 			{ label: 'Getting started with modding', slug: 'modding' },
-			// 			{
-			// 				label: "installation guide",
-			// 				link: 'modding/installation-guide',
-			// 			},
-			// 			{
-			// 				label: 'Making mods',
-			// 				autogenerate: { directory: 'modding/making-mods' }
-			// 			}
-			// 		],
-			// 	},
-			// 	{
-			// 		label: "leadingNavLinks",
-			// 		items: [
-			// 			{ label: "Home", link: "/" },
-			// 			{ label: "Charting", link: "/charting" },
-			// 		]
-			// 	},
-			// ],
 
 			customCss: ['./src/tailwind.css'],
 
