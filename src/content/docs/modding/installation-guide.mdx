@@ -4,6 +4,8 @@ description: Look here if you're new to installing mods.
 prev: false
 ---
 
+import { FileTree } from "@astrojs/starlight/components"
+
 If you're new to the Spin Rhythm XD modding scene, you've come to the right place!
 
 This guide will help you with the process of installing mods for the game. The setup works for Windows and Linux (not macOS unfortunately), but there are some platform-specific steps you will need to take.
@@ -31,17 +33,20 @@ With that said and done, you are now ready to install BepInEx and mods!
 First, download BepInEx [using this link](https://github.com/BepInEx/BepInEx/releases/download/v5.4.23.2/BepInEx_win_x64_5.4.23.2.zip).
 
 Once downloaded, extract the archive's contents directly in your game directory. **Your directory must look something like this:**
-```
-Spin Rhythm/
-| BepInEx/
-| SpinRhythm_Data/
-| doorstop_config.ini
-| GameAssembly.dll
-| SpinRhythm.exe
-| UnityPlayer.dll
-| UnityPlayer_Mono.dll
-| winhttp.dll
-```
+
+<FileTree>
+- Spin Rhythm
+  - BepInEx
+    - core
+      - a bunch of dlls
+  - SpinRhythm\_Data
+  - doorstop\_config.ini
+  - GameAssembly.dll
+  - SpinRhythm.exe
+  - UnityPlayer.dll
+  - UnityPlayer\_Mono.dll
+  - winhttp.dll
+</FileTree>
 
 You must have noticed there are 2 UnityPlayer.dll files. Right now the game is running on Unity's IL2CPP backend. To get mods running, you need to switch the game from using IL2CPP to using Mono. To do so:
 - Rename `UnityPlayer.dll` to something else
