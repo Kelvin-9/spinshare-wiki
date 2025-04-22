@@ -61,7 +61,7 @@ Next:
     This value, alongside the BPM, will be the value you assign to the **first BPM marker** in your chart in the SRXD editor. Take note of it somewhere.
 
 <Aside type='caution'>
-Arrov Vortex treats the offset value in the opposite direction, compared to SRXD. In this case, you'll have to invert it, making the end result `-0.078`.
+Arrow Vortex treats the offset value in the opposite direction, compared to SRXD. In this case, you'll have to invert it, making the end result `-0.078`.
 </Aside>
 
 ### Using charts from other games
@@ -105,3 +105,19 @@ or with the `Shift + C` global hotkey combo.
 ## Adjusting the first tempo marker
 
 Now that we've determined the correct BPM and offset values for your track, it's time to use them in our SRXD chart.
+
+First, find a sound in the music with a short attack, such as a kick drum that lands on the start of a measure. A sharper sound leads to a sharper waveform 
+which will allow you to more accurately determine the offset of the tempomap.
+![Tempo Offset](@images/tempomapping/tempo-offset-1.png)
+
+<Aside type='caution'>
+Depending on the music, you may not be able to find a sound that registers sharply on the waveform. Another way to get a decent offset is to find a good candidate sound, 
+slow down the song (with the `P` key), enable metronome (with the keyboard combo `Shift + C` or the button at the top right of the clip info editor screen) and listen for whether the sound
+lines up correctly with the metronome. 
+</Aside>
+
+Then you can click and drag the tempo marker to adjust the measure numbers such that they line up with the sound you have chosen.
+![Tempo Offset](@images/tempomapping/tempo-offset-2.png)
+Use mouse scroll wheel to zoom in and make finer adjustments. Do this after moving the measure marker in the previous step first because moving the tempo marker
+is slower proportional to the zoom level.
+![Tempo Offset](@images/tempomapping/tempo-offset-3.png)
