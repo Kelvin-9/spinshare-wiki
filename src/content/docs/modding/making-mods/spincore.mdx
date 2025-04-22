@@ -1,0 +1,34 @@
+---
+title: Developing with SpinCore
+description: Here's how you can work with SpinCore
+prev: false
+---
+
+SpinCore is a multipurpose core library mod developed. This mod provides:
+- UI helper functions to help you build a nice interface
+- Translation String management
+- An abstract trigger interface
+- Utility functions for pretty much everything
+
+## Building with the mod
+
+In your mod project, add a reference to `SpinCore.dll`. If you're using JSON serialization features, you can add a reference to `Newtonsoft.Json.dll` or add the Newtonsoft.Json NuGet package.
+
+Next, declare your mod depends on SpinCore:
+
+```diff
++using SpinCore;
+ ...
+ [BepInPlugin("srxd.johndoe.mycoolplugin", "My Cool Plugin", "0.1.0")]
++[BepInDependency(SpinCorePlugin.Guid)]
+ internal class MyCoolPlugin : BaseUnityPlugin
+ ...
+```
+
+This tells BepInEx to load your mod AFTER SpinCore, **only if SpinCore is found and loaded**.
+
+## Working with SpinCore
+
+All the tools provided by SpinCore are used in SpinCore's Test Mod, found on the [SpinCore repository](https://github.com/Raoul1808/SpinCore).
+
+<!-- TODO: expand this when I get home -->
