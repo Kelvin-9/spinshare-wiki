@@ -146,7 +146,7 @@ export default defineConfig({
 			social: [
 				{ icon: "github", label: "GitHub", href: "https://github.com/useredge/spinshare-wiki" },
 				{ icon: "discord", label: "SpinShare Discord", href: "https://spinsha.re/discord" },
-				{ icon: "blueSky", label: "Bluesky", href: "https://bsky.app/user/WeAreSpinSHare" },
+				{ icon: "blueSky", label: "Bluesky", href: "https://bsky.app/profile/spinsha.re" },
 			],
 
 			customCss: ['./src/tailwind.css'],
