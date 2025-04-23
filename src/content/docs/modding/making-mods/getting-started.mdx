@@ -6,6 +6,8 @@ sidebar:
     order: 1
 ---
 
+import { FileTree } from "@astrojs/starlight/components"
+
 Ever wanted to make a mod for the game? Here's how to get you started.
 
 ## Creating your mod
@@ -29,13 +31,17 @@ To make a mod, you will need:
 Open your IDE of choice and create a new **class library** targeting either .NET Framework 4.7.2 or 4.8, or .NET Standard 2.0 or 2.1.
 
 Before writing any code, you will need to add references to these files from your game directory:
-- `BepInEx/core/`
-    - `BepInEx.dll`
-    - `0Harmony.dll`
-- `SpinRhythm_Data/Managed/`
-    - `Assembly-CSharp.dll`
-    - `UnityEngine.dll`
-    - `UnityEngine.CoreModule.dll`
+<FileTree>
+- BepInEx
+  - core
+    - 0Harmony.dll
+    - BepInEx.dll
+- SpinRhythm\_Data
+  - Managed
+    - Assembly-CSharp.dll
+    - UnityEngine.CoreModule.dll
+    - UnityEngine.dll
+</FileTree>
 
 Every plugin needs a main plugin class. Rename `Class1.cs` to something like `Plugin.cs` or `Main.cs`, then have your main class look like this:
 ```cs
