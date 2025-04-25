@@ -1,0 +1,18 @@
+---
+import Image from "astro/components/Image.astro";
+
+const { profile } = Astro.props;
+---
+
+<div class="w-full flex flex-row border-[1px] border-neutral-600 bg-neutral-800 items-center">
+
+    <a class="max-h-[96px] max-w-[96px] overflow-hidden relative aspect-square rounded-full m-2" href={profile.link} target="_blank" rel="noopener noreferrer">
+        <Image inferSize class="min-h-full object-cover" src={profile.pfp} alt="pfp" />
+    </a>
+
+    <div>
+        <b><i>{profile.name} says:</i></b>
+        <slot name="quote" />
+    </div>
+
+</div>
