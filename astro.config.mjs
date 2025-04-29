@@ -152,7 +152,7 @@ export default defineConfig({
 			customCss: ['./src/tailwind.css'],
 
 			components: {
-				SiteTitle: './src/components/CustomSiteTitle.astro',
+				SiteTitle: './src/components/overrides/CustomSiteTitle.astro',
 			},
 
 			favicon: '/favicon.svg',

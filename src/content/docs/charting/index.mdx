@@ -6,10 +6,18 @@ prev: false
 
 import { Aside } from "@astrojs/starlight/components"
 import { Image } from "astro:assets"
+import Quote from '../../../components/custom/Quote.astro'
+import users from '../../../assets/users.json'
 
 Not enough death metal, too many anime openings, or just that one artist you're the biggest fan of whose songs haven't been charted yet? 
 
 You've come to the right place to learn doing it yourself then!
+
+<Quote profile={users[1]}>
+    <p slot="quote">
+        Fax my brother! Spit your shit indeed!
+    </p>
+</Quote>
 
 ### Further reading
 
@@ -49,3 +57,7 @@ Date.now();
 | transitionOut	| 0	| 0 for hard end 1 to fade out after the clip ends (crossfade out) 2 to fade out before the clip ends |
 | transitionOutValue |	0.0	| length of the fade effect in seconds |
 | transitionOutOffset |	0.0 | offset of the end of the clip in seconds eg. if 1.0, the audio will continue for 1 second past the end of the clip |
+
+import { ContributorList } from "starlight-contributor-list"
+
+<ContributorList githubRepo="useredge/spinshare-wiki" />
